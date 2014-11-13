@@ -5,14 +5,17 @@ import java.util.Iterator;
 
 /**
  * Created by Jun on 11/4/2014.
+ * This is a generic linked list implementeation
  */
 public class LinkedListNode<T> {
     T data;
     LinkedListNode next;
+    LinkedListNode last;
     public LinkedListNode(){}
     public LinkedListNode(T t){
         data = t;
         next = null;
+        last = null;
     }
 
 
@@ -24,7 +27,8 @@ public class LinkedListNode<T> {
         }
         while (it.hasNext()) {
             current.next = new LinkedListNode( (T)it.next());
-            current = next;
+            current.next.last = current;
+            current = current.next;
         }
     }
 
@@ -47,6 +51,7 @@ public class LinkedListNode<T> {
             runner = runner.next;
         }
         runner.next = n;
+        n.last = runner;
         return this;
     }
 
@@ -55,9 +60,10 @@ public class LinkedListNode<T> {
     }
     public String toString(){
         String str = "node " + data.toString()+ " ";
-        while (next != null){
-            str = str + next.toString();
-            next = next.next;
+        LinkedListNode runner = next;
+        while (runner != null){
+            str = str + " node " + runner.data.toString();
+            runner = runner.next;
         }
         return str;
     }

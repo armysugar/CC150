@@ -6,6 +6,9 @@ import java.util.Stack;
 
 /**
  * Created by Jun on 11/8/2014.
+ * exercise 2.5
+ * This class offers functions to add two linked lists (each node representing one digit)
+ * Assuming the list is only singly linked
  */
 public class ListNumberAddition {
 //    ArrayList<Integer> firstNum = new ArrayList<Integer>();
