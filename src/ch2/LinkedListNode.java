@@ -54,7 +54,7 @@ public class LinkedListNode<T> {
         return appendToTail(new LinkedListNode(t));
     }
     public String toString(){
-        String str = "node " + data.toString();
+        String str = "node " + data.toString()+ " ";
         while (next != null){
             str = str + next.toString();
             next = next.next;
