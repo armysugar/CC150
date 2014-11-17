@@ -8,7 +8,7 @@ import java.util.LinkedList;
 /**
  * Created by Jun on 11/3/2014.
  */
-public class ListDuplicate {
+public class ListDuplicateRemoval {
     private final LinkedList<Integer> test1 = new LinkedList<Integer>();
     private final LinkedList<String>  test2 = new LinkedList<String>();
     private final LinkedList<ArrayList<Integer>> test3 = new LinkedList<ArrayList<Integer>>();
@@ -24,7 +24,7 @@ public class ListDuplicate {
 
     }
     public static void main(String[] args) {
-        ListDuplicate ld = new ListDuplicate();
+        ListDuplicateRemoval ld = new ListDuplicateRemoval();
 
         System.out.println(ld.removeDuplicates(ld.test1));
         System.out.println(ld.removeDuplicates(ld.test2));
@@ -44,15 +44,15 @@ public class ListDuplicate {
         return new LinkedList<E>(exist.keySet());
     }
 
-    private <E> LinkedList<E> removeDuplicatesWithoutExtra(LinkedList<E> l){
+    private <E> LinkedList<E> removeDuplicatesWithoutExtra(LinkedList<E> ls){
 //        LinkedListNode;
-        if(l.size() < 1){
-            return l;
+        if(ls.size() < 1){
+            return ls;
         }
         E last;
         E runner;
-        for(int i = 0; i < l.size()-1; i++){
-            Iterator it = l.listIterator(i);
+        for(int i = 0; i < ls.size()-1; i++){
+            Iterator it = ls.listIterator(i);
             last = (E)it.next();
             while (it.hasNext()){
                 if(last.equals(runner = (E) it.next())){
@@ -65,6 +65,6 @@ public class ListDuplicate {
 //
 //            }
         }
-        return l;
+        return ls;
     }
 }

@@ -9,6 +9,32 @@ import java.util.Iterator;
  */
 public class LinkedListNode<T> {
     T data;
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public void setNext(LinkedListNode next) {
+        this.next = next;
+    }
+
+    public void setLast(LinkedListNode last) {
+        this.last = last;
+    }
+
+    public T getData() {
+
+        return data;
+    }
+
+    public LinkedListNode getNext() {
+        return next;
+    }
+
+    public LinkedListNode getLast() {
+        return last;
+    }
+
     LinkedListNode next;
     LinkedListNode last;
     public LinkedListNode(){}
