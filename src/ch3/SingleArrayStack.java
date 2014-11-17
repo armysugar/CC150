@@ -29,7 +29,6 @@ public static void main(String[] args) {
             indices[i] = i;
         }
         arr = (T[]) new Object[stackSize];
-
 //        stacks.add(new )
     }
 
