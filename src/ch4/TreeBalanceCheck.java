@@ -5,9 +5,11 @@ import java.util.Stack;
 /**
  * Created by Jun on 11/30/2014.
  *
- * PROBLEM: Check if a bynary tree is balanced
+ * PROBLEM: 4.1 Check if a bynary tree is balanced
  *
  * HINT: to determine the height of a node, it's children's height must be determined first -- post oder traversal
+ *
+ * SOLUTION: solved in O(n) time and O(lgn) space.
  *
  * Implementafunctiontocheckifabinarytreeisbalanced.Forthepurposesof
  * thisquestion,abalancedtreeisdefinedtobeatreesuchthattheheightsofthe

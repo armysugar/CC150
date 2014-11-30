@@ -10,6 +10,7 @@ public class JunBinarySearchTree<T extends Comparable> {
     public JunBinarySearchTree(T t){
         tn = new TreeNode(t);
     }
+    public JunBinarySearchTree(TreeNode tn) {this.tn = tn;}
 
     public void add(T t){
         tn = add(tn, t);
@@ -65,5 +66,9 @@ public class JunBinarySearchTree<T extends Comparable> {
         sb.append(") " + tn.value + " (");
         sb.append(tn.right);
         return sb.toString();
+    }
+
+    public void print(){
+        tn.print();
     }
 }

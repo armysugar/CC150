@@ -127,6 +127,19 @@ public class TreeNode<T extends Comparable>{
         return sb.toString();
     }
 
+    public void  print(){
+        this.print(0);
+    }
+
+    public void print(int level){
+        if(left != null) left.print(level + 1);
+        StringBuffer space = new StringBuffer();
+        for(int i = 0; i < level; i ++) space.append("\t");
+        space.append(value.toString());
+        System.out.println(space.toString());
+        if(right != null) right.print(level + 1);
+    }
+
     public boolean equals(TreeNode n){
         if(value.compareTo(n.value) == 0
                 &&
