@@ -26,7 +26,8 @@ public class FirstCommonAncestor <T extends Comparable> {
 //        jbst.add();
         jbst.print();
         FirstCommonAncestor fca = new FirstCommonAncestor();
-        System.out.println(fca.firstCommonAncestor(jbst.tn, new TreeNode<Integer>(3), null));
+        System.out.println(fca.firstCommonAncestor(jbst.tn, new TreeNode<Integer>(3),  new TreeNode(7)));
+        System.out.println(fca.findFirstCommonAncestor(jbst.tn, new TreeNode(3), new TreeNode(7)));
     }
     /**
      * find the first common ancestor of two nodes
@@ -48,13 +49,8 @@ public class FirstCommonAncestor <T extends Comparable> {
 
     private TreeNode<T> firstCommonAncestor(Stack<TreeNode<T>> pathA, Stack<TreeNode<T>> pathB){
         if(pathA == null || pathB == null || pathA.isEmpty() || pathB.isEmpty()) return null;
-//        TreeNode<T> a;
-//        TreeNode<T> b;
         TreeNode ancestor = null;
         while (!pathA.isEmpty() && !pathB.isEmpty()){
-//            a = pathA.pop();
-//            b = pathB.pop();
-//            if(a.value.compareTo(b.value))
             if(pathA.peek().value.compareTo(pathB.peek().value) == 0) {
                 ancestor = pathA.pop();
                 pathB.pop();
@@ -81,4 +77,47 @@ public class FirstCommonAncestor <T extends Comparable> {
         }
 
     }
+
+    private TreeNode<T> findFirstCommonAncestor(TreeNode<T> root, TreeNode<T> a, TreeNode<T> b){
+        if(root == null || a == null || b == null || root.value == null || a.value == null || b.value == null)
+            return null;
+        if(a.value.compareTo(b.value) == 0) return a;
+        ConnectionStats rootStats = connectionStats(root, a, b);
+        if(rootStats.firstAncestor) return rootStats.ancestor;
+        else return null;
+    }
+
+    private ConnectionStats connectionStats(TreeNode<T> root, TreeNode<T> a, TreeNode<T> b){
+        if(root == null || a == null || b == null || root.value == null || a.value == null || b.value == null)
+            return new ConnectionStats(false, false, false, null);
+//        else if(findfirstCommonAncestor(root.left, a, b).firstAncestor
+        ConnectionStats leftStats = connectionStats(root.left, a, b);
+        if(leftStats.firstAncestor) return leftStats; // return left if it got the first ancestor
+        ConnectionStats rightStats = connectionStats(root.right, a, b);
+        if(rightStats.firstAncestor) return rightStats; //return right if it got the first ancestor
+        boolean aConnected = leftStats.connectedToFirst || rightStats.connectedToFirst || root.value.compareTo(a.value) == 0;
+        boolean bConnected = leftStats.connectedToSecond || rightStats.connectedToSecond || root.value.compareTo(b.value) == 0;
+        if( aConnected && bConnected){
+            return  new ConnectionStats(true, true, true, root);
+        }
+        else return new ConnectionStats(aConnected, bConnected, false,null);
+    }
+
+    private class ConnectionStats{
+        boolean connectedToFirst;
+        boolean connectedToSecond;
+        boolean firstAncestor;
+        TreeNode<T> ancestor;
+
+        private ConnectionStats(boolean connectedToFirst, boolean connectedToSecond, boolean firstAncestor, TreeNode<T> ancestor) {
+            this.connectedToFirst = connectedToFirst;
+            this.firstAncestor = firstAncestor;
+            this.connectedToSecond = connectedToSecond;
+            this.ancestor = ancestor;
+        }
+    }
+
+
+
+
 }
