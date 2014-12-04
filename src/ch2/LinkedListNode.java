@@ -84,10 +84,30 @@ public class LinkedListNode<T> {
     public LinkedListNode appendToTail(T t){
         return appendToTail(new LinkedListNode(t));
     }
+
+    public LinkedListNode addToHead(LinkedListNode n){
+//        n.next = this;
+//        return n;
+
+//        n.next = this;
+//        this.next = n;
+//        return this;
+        LinkedListNode add = new LinkedListNode(this.data);
+        add.next = this.next;
+        this.data = (T)n.data;
+        this.next = add;
+        return this;
+    }
+
+    public LinkedListNode addToHead(T v){
+        return addToHead(new LinkedListNode(v));
+    }
+
     public String toString(){
+        if(data == null) return "";
         String str = "node " + data.toString()+ " ";
         LinkedListNode runner = next;
-        while (runner != null){
+        while (runner != null && runner.data != null){
             str = str + " node " + runner.data.toString();
             runner = runner.next;
         }
